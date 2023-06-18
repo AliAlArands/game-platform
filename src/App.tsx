@@ -16,7 +16,7 @@ function App() {
         // gridTemplateColumns={"10% 1fr"}
         // gridTemplateRows={"5% 1fr"}
       >
-        <GridItem area="nav">
+        <GridItem area="nav" mb="1rem">
           <Navbar />
         </GridItem>
         <Show above="lg">
