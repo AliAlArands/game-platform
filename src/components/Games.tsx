@@ -1,8 +1,6 @@
 import { Grid, GridItem, Text } from "@chakra-ui/react";
-import { useEffect, useState } from "react";
-import rawgApi from "./../apis/rawgApi";
-import { CanceledError } from "axios";
 import GameCard from "./GameCard";
+import useGames from "./hooks/useGames";
 
 export interface Platform {
   id: number;
@@ -19,26 +17,10 @@ export interface Game {
 }
 
 const Games = () => {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
-  useEffect(() => {
-    const controller = new AbortController();
-    rawgApi
-      .get("/games", { signal: controller.signal })
-      .then((res) => {
-        setGames(res.data.results);
-        console.log(res.data.results);
-      })
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        setError(err.message);
-      });
-
-    return () => controller.abort();
-  }, []);
+  const { error, data: games } = useGames();
   return (
     <>
-      {error && <Text color="red.200">{error}</Text>}
+      {error && <Text color="red.200">{error.message}</Text>}
       <Grid
         templateColumns={{
           lg: "repeat(3, 1fr)",
@@ -47,7 +29,7 @@ const Games = () => {
         }}
         gap="1rem"
       >
-        {games.map((game) => (
+        {games?.map((game) => (
           <GridItem key={game.id}>
             <GameCard game={game} />
           </GridItem>
