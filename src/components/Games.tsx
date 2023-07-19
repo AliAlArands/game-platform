@@ -4,7 +4,7 @@ import rawgApi from "./../apis/rawgApi";
 import { CanceledError } from "axios";
 import GameCard from "./GameCard";
 
-interface Platform {
+export interface Platform {
   id: number;
   name: string;
   slug: string;
@@ -14,7 +14,7 @@ export interface Game {
   id: number;
   name: string;
   background_image: string;
-  parent_platforms:  {platform: Platform}[];
+  parent_platforms: { platform: Platform }[];
   metacritic: number;
 }
 
@@ -48,7 +48,7 @@ const Games = () => {
         gap="1rem"
       >
         {games.map((game) => (
-          <GridItem key={game.id} >
+          <GridItem key={game.id}>
             <GameCard game={game} />
           </GridItem>
         ))}
