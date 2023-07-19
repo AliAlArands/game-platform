@@ -12,7 +12,7 @@ const GameBadge = ({ points }: Props) => {
       lineHeight="20px"
       fontWeight="bold"
       fontSize="2rem"
-      colorScheme="green"
+      colorScheme= {points > 75 ? "green": points > 50 ? "yellow" : "red"}
       variant="subtle"
     >
       {points}
