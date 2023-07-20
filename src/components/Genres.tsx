@@ -1,8 +1,7 @@
-import useGenres from "./hooks/useGenres"
-
+import useGenres from "./hooks/useGenres";
 
 const Genres = () => {
-  const { data : genres, error } = useGenres()
+  const { data: genres, error } = useGenres();
   if (error) return <p className="text-danger">{error.message}</p>;
   return (
     <ul>

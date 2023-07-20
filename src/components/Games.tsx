@@ -10,7 +10,6 @@ import {
 } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import useGames from "./hooks/useGames";
-
 export interface Platform {
   id: number;
   name: string;

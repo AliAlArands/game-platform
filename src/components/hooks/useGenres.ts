@@ -1,16 +1,10 @@
-import { useQuery } from "@tanstack/react-query";
-import rawgApi from "../../apis/rawgApi";
+import useData from "./useData"
 
 interface Genre {
     id: number;
     name: string;
 }
 
-const fetchGenres = () => {
-    return useQuery<Genre[], Error>({
-        queryKey: ["genres"],
-        queryFn: () => rawgApi.get("/genres").then((res) => res.data.results),
-    });
-}
+const fetchGenres = () => useData<Genre>("genres")
 
 export default fetchGenres;
