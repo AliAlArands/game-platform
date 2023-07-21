@@ -42,7 +42,7 @@ const Games = () => {
       >
         {isLoading &&
           skeletons.map((skeleton) => (
-            <Card width={"300px"} borderRadius={"10px"}>
+            <Card borderRadius={"10px"}>
               <CardHeader>
                 <Skeleton height="250px" borderRadius={"10px"} key={skeleton} />
               </CardHeader>

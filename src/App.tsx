@@ -14,6 +14,7 @@ function App() {
           lg: `"nav nav" "aside main"`,
           base: `"nav" "main"`,
         }}
+        templateColumns={{base: '1fr', lg: '200px 1fr'}}
         // gridTemplateColumns={"10% 1fr"}
         // gridTemplateRows={"5% 1fr"}
       >
