@@ -27,18 +27,19 @@ export interface Game {
 }
 
 interface Props {
-  id? : number
+  genreId?: number;
+  platformId?: number ;
 }
 
-const Games = ({id}:Props) => {
-  const { error, data: games, isLoading } = id?  useGames(id): useGames();
-  
+const Games = ({ genreId, platformId }: Props) => {
+  const { error, data: games, isLoading } = useGames(genreId, platformId)
+
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (
     <>
       {error && <Text color="red.200">{error.message}</Text>}
       <Grid
-      mt={3}
+        mt={3}
         templateColumns={{
           lg: "repeat(3, 1fr)",
           md: "repeat(2, 1fr)",
@@ -50,7 +51,7 @@ const Games = ({id}:Props) => {
           skeletons.map((skeleton) => (
             <Card borderRadius={"10px"} key={skeleton}>
               <CardHeader>
-                <Skeleton height="250px" borderRadius={"10px"}  />
+                <Skeleton height="250px" borderRadius={"10px"} />
               </CardHeader>
               <CardBody>
                 <SkeletonText />
