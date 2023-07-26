@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Games from "./components/Games";
 import Genres from "./components/Genres";
 import { useState } from "react";
+import Platforms from "./components/Platforms";
 
 function App() {
   const [setectedGenre, setSelectedGenre] = useState<number>();
@@ -32,6 +33,7 @@ function App() {
           </GridItem>
         </Show>
         <GridItem area="main">
+          <Platforms />
           <Games id={setectedGenre} />
         </GridItem>
       </Grid>

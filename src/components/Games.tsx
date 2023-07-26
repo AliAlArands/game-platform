@@ -38,6 +38,7 @@ const Games = ({id}:Props) => {
     <>
       {error && <Text color="red.200">{error.message}</Text>}
       <Grid
+      mt={3}
         templateColumns={{
           lg: "repeat(3, 1fr)",
           md: "repeat(2, 1fr)",
