@@ -10,6 +10,7 @@ import {
 } from "@chakra-ui/react";
 import GameCard from "./GameCard";
 import useGames from "./hooks/useGames";
+import { Genre } from "./hooks/useGenres";
 export interface Platform {
   id: number;
   name: string;
@@ -22,13 +23,17 @@ export interface Game {
   background_image: string;
   parent_platforms: { platform: Platform }[];
   metacritic: number;
+  genres: Genre[];
 }
 
-const Games = () => {
-  const { error, data: games, isLoading } = useGames();
+interface Props {
+  id? : number
+}
 
+const Games = ({id}:Props) => {
+  const { error, data: games, isLoading } = id?  useGames(id): useGames();
+  
   const skeletons = [1, 2, 3, 4, 5, 6];
-
   return (
     <>
       {error && <Text color="red.200">{error.message}</Text>}
@@ -42,9 +47,9 @@ const Games = () => {
       >
         {isLoading &&
           skeletons.map((skeleton) => (
-            <Card borderRadius={"10px"}>
+            <Card borderRadius={"10px"} key={skeleton}>
               <CardHeader>
-                <Skeleton height="250px" borderRadius={"10px"} key={skeleton} />
+                <Skeleton height="250px" borderRadius={"10px"}  />
               </CardHeader>
               <CardBody>
                 <SkeletonText />

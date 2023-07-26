@@ -3,10 +3,10 @@ import rawgApi from "../../apis/rawgApi";
 
 
 
-const fetchData = <T>(data: string) => {
+const fetchData = <T>(data: string, id?:number) => {
     return useQuery<T[], Error>({
-        queryKey: [data],
-        queryFn: () => rawgApi.get(`/${data}`).then((res) => res.data.results),
+        queryKey: [data, id],
+        queryFn: () => rawgApi.get(`/${data}`, {params: {genres:id}}).then((res) => res.data.results),
     });
 }
 

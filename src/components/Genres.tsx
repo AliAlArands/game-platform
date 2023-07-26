@@ -1,18 +1,34 @@
 import {
+  Button,
   Card,
   Image,
   List,
   ListItem,
   Skeleton,
   SkeletonText,
-  Text,
 } from "@chakra-ui/react";
 import useGenres from "./hooks/useGenres";
 
-const Genres = () => {
+interface Props {
+  handleOnClick: (id: number) => void;
+}
+
+const Genres = ({ handleOnClick }: Props) => {
   const { data: genres, error, isLoading } = useGenres();
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   if (error) return null;
+  const style = {
+    ":hover": {
+      // borderBottom: "1px solid white",
+      cursor: "pointer"
+    },
+  };
+
+  // const imgaeStyle = {
+  //   ':hover' : {
+  //     marginBottom : "1px solid white"
+  //   }
+  // }
   return (
     <>
       {isLoading &&
@@ -29,6 +45,8 @@ const Genres = () => {
       <List>
         {genres?.map((genre) => (
           <ListItem
+            sx={style}
+            onClick={() => handleOnClick(genre.id)}
             marginBottom={"10px"}
             key={genre.id}
             display={"flex"}
@@ -40,11 +58,12 @@ const Genres = () => {
               objectFit="cover"
               borderRadius={8}
               marginEnd={"10px"}
-              alt={genre.description}
+              // sx={imgaeStyle}
+              // borderBottom={"1px solid white"}
             ></Image>
-            <Text fontSize={"lg"} fontWeight={"bold"}>
+            <Button variant="link" fontSize={"lg"} fontWeight={"bold"}>
               {genre.name}
-            </Text>
+            </Button>
           </ListItem>
         ))}
       </List>

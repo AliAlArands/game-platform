@@ -1,5 +1,5 @@
 import { Game } from "../Games";
 import useData from "./useData"
 
-const fetchGames = () => useData<Game>("games");
+const fetchGames = (id?: number) => useData<Game>("games", id);
 export default fetchGames;

@@ -21,8 +21,8 @@ const GameCard = ({ game }: Props) => {
       <CardHeader>
         <HStack justifyContent="space-between">
           <Box>
-            {game.parent_platforms.map(({ platform }) => (
-              <GamePlatform platform={platform} />
+            {game.parent_platforms.map(({ platform }, index) => (
+              <GamePlatform key={index} platform={platform} />
             ))}
           </Box>
 
