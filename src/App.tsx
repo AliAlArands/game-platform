@@ -8,7 +8,6 @@ import { useState } from "react";
 function App() {
   const [setectedGenre, setSelectedGenre] = useState<number>();
   const getGenreId = (id: number) => {
-    console.log(id);
     setSelectedGenre(id);
   };
   return (
@@ -29,7 +28,7 @@ function App() {
         </GridItem>
         <Show above="lg">
           <GridItem area="aside" paddingLeft={"10px"} paddingRight={"8px"}>
-            <Genres handleOnClick={getGenreId} />
+            <Genres id={setectedGenre ? setectedGenre : null} handleOnClick={getGenreId} />
           </GridItem>
         </Show>
         <GridItem area="main">

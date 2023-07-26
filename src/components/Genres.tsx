@@ -11,17 +11,29 @@ import useGenres from "./hooks/useGenres";
 
 interface Props {
   handleOnClick: (id: number) => void;
+  id: number | null;
 }
 
-const Genres = ({ handleOnClick }: Props) => {
+const Genres = ({ handleOnClick, id }: Props) => {
   const { data: genres, error, isLoading } = useGenres();
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
   if (error) return null;
   const style = {
     ":hover": {
       // borderBottom: "1px solid white",
-      cursor: "pointer"
+      cursor: "pointer",
     },
+  };
+
+  const styleGenre = {
+    fontWieght: "400",
+    color: "#978d8d",
+    transition: "all 0.1s all"
+  };
+
+  const styleSelectedGenre = {
+    fontWieght: "700",
+    color: "white",
   };
 
   // const imgaeStyle = {
@@ -61,7 +73,11 @@ const Genres = ({ handleOnClick }: Props) => {
               // sx={imgaeStyle}
               // borderBottom={"1px solid white"}
             ></Image>
-            <Button variant="link" fontSize={"lg"} fontWeight={"bold"}>
+            <Button
+              variant="link"
+              fontSize={"lg"}
+              sx={genre.id === id ? styleSelectedGenre : styleGenre}
+            >
               {genre.name}
             </Button>
           </ListItem>
