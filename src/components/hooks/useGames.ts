@@ -1,5 +1,6 @@
 import { Game } from "../Games";
 import useData from "./useData"
+import { GameQuery } from "../../App";
 
-const fetchGames = (id: number | undefined, platformId: number | undefined, sorting: string | undefined) => useData<Game>("games", id, platformId, sorting);
+const fetchGames = (gameQuery: GameQuery) => useData<Game>("games", gameQuery.GenreId, gameQuery.Platform?.id, gameQuery.Sorting?.value);
 export default fetchGames;

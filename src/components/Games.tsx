@@ -11,6 +11,7 @@ import {
 import GameCard from "./GameCard";
 import useGames from "./hooks/useGames";
 import { Genre } from "./hooks/useGenres";
+import { GameQuery } from "../App";
 export interface Platform {
   id: number;
   name: string;
@@ -27,13 +28,11 @@ export interface Game {
 }
 
 interface Props {
-  genreId?: number;
-  platformId?: number ;
-  sorting?: string;
+  gameQuery: GameQuery
 }
 
-const Games = ({ genreId, platformId, sorting }: Props) => {
-  const { error, data: games, isLoading } = useGames(genreId, platformId, sorting)
+const Games = ({gameQuery}: Props) => {
+  const { error, data: games, isLoading } = useGames(gameQuery);
 
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (

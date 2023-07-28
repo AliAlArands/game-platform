@@ -7,8 +7,8 @@ export interface SortType {
 }
 
 interface Props {
-    selectSorting: (sorting: SortType | undefined) => void,
-    sorting: SortType | undefined,
+    selectSorting: (sorting: SortType) => void,
+    sorting: SortType ,
 }
 
 const SortCompoent = ({ selectSorting, sorting }: Props) => {

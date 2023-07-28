@@ -8,17 +8,21 @@ import Platforms from "./components/Platforms";
 import SortCompoent from "./components/SortCompoent";
 import { SortType } from "./components/SortCompoent";
 
-
+export interface GameQuery {
+  GenreId: number,
+  Platform: Platform,
+  Sorting: SortType
+}
 
 function App() {
-  const [sorting, selectSorting] = useState<SortType>()
-  const [selectedGenre, setSelectedGenre] = useState<number>();
-  const [selectedPlatform, setSelectedPlatform] = useState<Platform>();
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery)
+
   const getGenreId = (id: number) => {
-    setSelectedGenre(id);
+    setGameQuery({ ...gameQuery, GenreId: id })
   };
-  const setPlatform = (platform:Platform) => {
-    setSelectedPlatform(platform);
+
+  const setPlatform = (platform: Platform) => {
+    setGameQuery({ ...gameQuery, Platform: platform })
   };
   return (
     <>
@@ -39,15 +43,15 @@ function App() {
         <Show above="lg">
           <GridItem area="aside" paddingLeft={"10px"} paddingRight={"8px"}>
             <Genres
-              id={selectedGenre ? selectedGenre : null}
+              id={gameQuery.GenreId}
               handleOnClick={getGenreId}
             />
           </GridItem>
         </Show>
         <GridItem area="main">
-          <Platforms platform={selectedPlatform} selectPlatfrom={setPlatform} />
-          <SortCompoent selectSorting={(sortType) => selectSorting(sortType)} sorting={sorting}/>
-          <Games platformId={selectedPlatform?.id} genreId={selectedGenre} sorting={sorting?.value}/>
+          <Platforms platform={gameQuery.Platform} selectPlatfrom={setPlatform} />
+          <SortCompoent sorting={gameQuery.Sorting} selectSorting={(sorting) => setGameQuery({...gameQuery, Sorting:sorting})}/>
+          <Games gameQuery={gameQuery} />
         </GridItem>
       </Grid>
     </>
