@@ -5,10 +5,13 @@ import Games, { Platform } from "./components/Games";
 import Genres from "./components/Genres";
 import { useState } from "react";
 import Platforms from "./components/Platforms";
+import SortCompoent from "./components/SortCompoent";
+import { SortType } from "./components/SortCompoent";
 
 
 
 function App() {
+  const [sorting, selectSorting] = useState<SortType>()
   const [selectedGenre, setSelectedGenre] = useState<number>();
   const [selectedPlatform, setSelectedPlatform] = useState<Platform>();
   const getGenreId = (id: number) => {
@@ -43,7 +46,8 @@ function App() {
         </Show>
         <GridItem area="main">
           <Platforms platform={selectedPlatform} selectPlatfrom={setPlatform} />
-          <Games platformId={selectedPlatform?.id} genreId={selectedGenre} />
+          <SortCompoent selectSorting={(sortType) => selectSorting(sortType)} sorting={sorting}/>
+          <Games platformId={selectedPlatform?.id} genreId={selectedGenre} sorting={sorting?.value}/>
         </GridItem>
       </Grid>
     </>

@@ -29,10 +29,11 @@ export interface Game {
 interface Props {
   genreId?: number;
   platformId?: number ;
+  sorting?: string;
 }
 
-const Games = ({ genreId, platformId }: Props) => {
-  const { error, data: games, isLoading } = useGames(genreId, platformId)
+const Games = ({ genreId, platformId, sorting }: Props) => {
+  const { error, data: games, isLoading } = useGames(genreId, platformId, sorting)
 
   const skeletons = [1, 2, 3, 4, 5, 6];
   return (
