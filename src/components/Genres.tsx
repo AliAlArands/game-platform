@@ -26,14 +26,15 @@ const Genres = ({ handleOnClick, id }: Props) => {
   };
 
   const styleGenre = {
-    fontWieght: "400",
+    fontWeight: "400",
     color: "#978d8d",
     transition: "all 0.1s all"
   };
 
   const styleSelectedGenre = {
-    fontWieght: "700",
+    fontWeight: "700",
     color: "white",
+    fontSize: '1.3rem'
   };
 
   // const imgaeStyle = {
@@ -63,6 +64,7 @@ const Genres = ({ handleOnClick, id }: Props) => {
             key={genre.id}
             display={"flex"}
             alignItems={"center"}
+            boxShadow="md"
           >
             <Image
               src={genre.image_background}

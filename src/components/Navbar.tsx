@@ -29,7 +29,7 @@ const Navbar = () => {
   };
   return (
     <Flex align={"center"} fontSize="2.5rem">
-      <Link sx={linkStyles} color="whiteAlpha.700" me="10">
+      <Link sx={linkStyles} me="10">
         RAWG
       </Link>
       <InputGroup>
