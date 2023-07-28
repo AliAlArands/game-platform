@@ -9,6 +9,7 @@ import {
 import { Game } from "./Games";
 import GameBadge from "./GameBadge";
 import GamePlatform from "./GamePlatform";
+import placeholder from "./../assets/placeholder.png"
 
 interface Props {
   game: Game;
@@ -17,7 +18,7 @@ interface Props {
 const GameCard = ({ game }: Props) => {
   return (
     <Card overflow={"hidden"}>
-      <Image src={game.background_image} />
+      <Image src={game.background_image || placeholder} objectFit={"cover"} />
       <CardHeader>
         <HStack justifyContent="space-between">
           <Box>
