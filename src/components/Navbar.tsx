@@ -6,8 +6,16 @@ import {
   InputGroup,
   InputLeftElement,
 } from "@chakra-ui/react";
+import { useRef } from "react";
 
-const Navbar = () => {
+interface Props {
+  onSearch: (query: string) => void,
+}
+
+const Navbar = ({onSearch}: Props) => {
+
+  const ref = useRef<HTMLInputElement>(null);
+
   const linkStyles = {
     fontWeight: "bold",
     letterSpacing: "3px",
@@ -18,26 +26,25 @@ const Navbar = () => {
     },
   };
   const navStyles = {
-    // border:"1px solid white",
-    border:"0",
-    backgroundColor : "hsl(0deg 0% 100% / 16%)",
+    backgroundColor: "hsl(0deg 0% 100% / 16%)",
     borderRadius: "20",
-    // ":hover": {
-    //   outline: "0",
-    //   border: "0",
-    // },
   };
   return (
     <Flex align={"center"} fontSize="2.5rem">
       <Link sx={linkStyles} me="10">
         RAWG
       </Link>
-      <InputGroup>
-        <InputLeftElement>
-          <SearchIcon />
-        </InputLeftElement>
-        <Input placeholder="Search games..." sx={navStyles} />
-      </InputGroup>
+      <form  onSubmit={(event) => {
+        event.preventDefault();
+        if (ref.current) onSearch(ref.current.value);
+      }}>
+        <InputGroup>
+          <InputLeftElement>
+            <SearchIcon />
+          </InputLeftElement>
+          <Input ref={ref} placeholder="Search games..." variant="filled" sx={navStyles} />
+        </InputGroup>
+      </form>
     </Flex>
   );
 };
