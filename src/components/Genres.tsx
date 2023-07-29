@@ -1,6 +1,7 @@
 import {
   Button,
   Card,
+  Heading,
   Image,
   List,
   ListItem,
@@ -44,6 +45,7 @@ const Genres = ({ handleOnClick, id }: Props) => {
   // }
   return (
     <>
+      <Heading  marginBottom={"10px"}>Genres</Heading>
       {isLoading &&
         skeletons.map((skeleton) => (
           <Card
