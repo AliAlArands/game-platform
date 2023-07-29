@@ -18,7 +18,7 @@ const Platforms = ({platform, selectPlatfrom}:Props) => {
         <MenuButton as={Button} rightIcon={<ChevronDownIcon />} p="15px" fontSize="1.5rem"  fontWeight="bold">
             { platform?.name || "Platforms"}
         </MenuButton>
-        <MenuList>
+        <MenuList backgroundColor={"#1A202C"}>
           {platforms?.map((platform) => (
           <MenuItem fontSize="1.5rem" key={platform.id} onClick={() => selectPlatfrom(platform)}>{platform.name}</MenuItem>
         ))}

@@ -8,10 +8,10 @@ import {
   Skeleton,
   SkeletonText,
 } from "@chakra-ui/react";
-import useGenres from "./hooks/useGenres";
+import useGenres, { Genre } from "./hooks/useGenres";
 
 interface Props {
-  handleOnClick: (id: number) => void;
+  handleOnClick: (genre: Genre) => void;
   id: number | null;
 }
 
@@ -61,7 +61,7 @@ const Genres = ({ handleOnClick, id }: Props) => {
         {genres?.map((genre) => (
           <ListItem
             sx={style}
-            onClick={() => handleOnClick(genre.id)}
+            onClick={() => handleOnClick(genre)}
             marginBottom={"10px"}
             key={genre.id}
             display={"flex"}

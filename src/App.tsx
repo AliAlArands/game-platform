@@ -1,5 +1,5 @@
 import "./App.css";
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Grid, GridItem, Heading, Show } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import Games, { Platform } from "./components/Games";
 import Genres from "./components/Genres";
@@ -7,9 +7,10 @@ import { useState } from "react";
 import Platforms from "./components/Platforms";
 import SortCompoent from "./components/SortCompoent";
 import { SortType } from "./components/SortCompoent";
+import { Genre } from "./components/hooks/useGenres";
 
 export interface GameQuery {
-  GenreId: number,
+  Genre: Genre,
   Platform: Platform,
   Sorting: SortType,
   SearchQuery: string,
@@ -18,8 +19,8 @@ export interface GameQuery {
 function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery)
 
-  const getGenreId = (id: number) => {
-    setGameQuery({ ...gameQuery, GenreId: id })
+  const getGenreId = (g: Genre) => {
+    setGameQuery({ ...gameQuery, Genre:g })
   };
 
   const setPlatform = (platform: Platform) => {
@@ -44,12 +45,13 @@ function App() {
         <Show above="lg">
           <GridItem area="aside" paddingLeft={"10px"} paddingRight={"8px"}>
             <Genres
-              id={gameQuery.GenreId}
+              id={gameQuery.Genre?.id}
               handleOnClick={getGenreId}
             />
           </GridItem>
         </Show>
         <GridItem area="main">
+          <Heading as={"h1"} fontSize={"7xl"} marginBottom={"20px"}> {gameQuery.Platform?.name || ''} {gameQuery.Genre?.name} Games</Heading>
           <Platforms platform={gameQuery.Platform} selectPlatfrom={setPlatform} />
           <SortCompoent sorting={gameQuery.Sorting} selectSorting={(sorting) => setGameQuery({...gameQuery, Sorting:sorting})}/>
           <Games gameQuery={gameQuery} />

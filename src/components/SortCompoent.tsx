@@ -26,7 +26,7 @@ const SortCompoent = ({ selectSorting, sorting }: Props) => {
             <Menu>
                 <MenuButton as={Button} rightIcon={<ChevronDownIcon />} mx="10px" p="15px" fontSize="1.5rem" fontWeight="bold">Order by: {sorting?.label || "Relevance"}
                 </MenuButton>
-                <MenuList>
+                <MenuList backgroundColor={"#1A202C"}>
                     {sortOrders.map((sortType, index) => <MenuItem key={index} fontSize="1.5rem" value={sortType.value} onClick={() => selectSorting(sortType)}>{sortType.label}</MenuItem>)}
                 </MenuList>
             </Menu>
